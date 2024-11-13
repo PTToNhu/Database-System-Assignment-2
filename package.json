@@ -1,0 +1,30 @@
+{
+  "name": "assignment2-database-system",
+  "version": "1.0.0",
+  "description": "project for Database System",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./src/server.js"
+  },
+  "keywords": [
+    "nodejs",
+    "react",
+    "express",
+    "Database",
+    "System"
+  ],
+  "author": "To Nhu",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "16.4.5",
+    "ejs": "3.1.10",
+    "express": "4.21.0",
+    "font-awesome": "4.7.0",
+    "msnodesqlv8": "4.2.1",
+    "mssql": "11.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "3.1.7"
+  }
+}
