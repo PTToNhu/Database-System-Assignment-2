@@ -4,7 +4,7 @@ require('dotenv').config()
 
 const app = express();
 const port = process.env.PORT || 8888;
-const hostname = process.env.HOST_NAME;
+const hostname = process.env.HOST_NAME||'localhost';
 const webRoutes = require('./routes/web')
 
 app.use(express.json())
