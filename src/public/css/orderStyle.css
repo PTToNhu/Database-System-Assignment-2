@@ -1,0 +1,128 @@
+.title {
+    padding-bottom: 30px;
+    text-align: center;
+    color: #1488DB;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.search-engine {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+}
+
+.search-engine input[type="text"] {
+    width: 30%;
+    margin-bottom: 20px;
+    border: 2px solid #D9D9D9;
+    height: 45px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 0;
+}
+.search-engine button{
+    margin-bottom: 20px;
+    height: 45px;
+    padding: 10px;
+    border-radius: 0;
+}
+button {
+    cursor: pointer;
+    color: #000;
+    padding: 6px 20px;
+    border: none;
+    font-size: 15px;
+    border-radius: 17px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    background-color:rgba(20, 136, 219, 0.70);
+}
+button:hover{
+    background-color: #0056b3;
+}
+.table-container {
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #ccc;
+    border-radius: 17px;
+    padding: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+}
+
+.columns3 {
+    float: left;
+    width: 25%;
+    /* height: 300px; */
+}
+
+.group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.columns3 div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+    padding: 0px 40px;
+}
+
+input[type="text"],
+input[type="datetime-local"] {
+    border-radius: 8px;
+    border: 2px solid #D9D9D9;
+    width: auto;
+    height: 30px;
+    padding: 10px;
+    margin-left: 10px;
+    /* margin-bottom: 10px; */
+}
+
+select {
+    border-radius: 8px;
+    border: 2px solid #D9D9D9;
+    width: auto;
+    height: 30px;
+    /* padding: 10px; */
+    margin-left: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+th {
+    background-color: #fff;
+    font-weight: bold;
+    border-right: none;
+}
+
+td {
+    background-color: #fff;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr td:last-child {
+    border-right: none
+}

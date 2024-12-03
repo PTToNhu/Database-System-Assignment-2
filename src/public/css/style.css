@@ -117,3 +117,12 @@ div.content {
         float: none;
     }
 }
+.title {
+    padding-bottom: 30px;
+    text-align: center;
+    color: #1488DB;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}

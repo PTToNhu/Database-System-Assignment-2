@@ -1,0 +1,57 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="/css/orderStyle.css">
+</head>
+
+<body>
+    <div class="title">
+        Thanh toán
+    </div>
+    <form class="search-engine" action="/order" method="get">
+        <input type="text" name="sdt" placeholder="Nhập số điện thoại khách hàng để tìm kiếm đơn đặt hàng">
+        <button type="submit" id="sdt">Tìm kiếm</button>
+    </form>
+
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Mã đơn</th>
+                <th>Mã chi nhánh</th>
+                <th>Thời gian đặt</th>
+                <th>Thời gian dùng</th>
+                <th>Số điện thoại khách hàng</th>
+                <th>Thanh toán</th>
+            </tr>
+            <tr>
+                <%orders.forEach(order=>{%>
+                    <td>
+                        <%=order.MADON%>
+                    </td>
+                    <td>
+                        <%=order.MACHINHANH%>
+                    </td>
+                    <td>
+                        <%=order.THOIGIANDAT%>
+                    </td>
+                    <td>
+                        <%=order.THOIGIANDUNG%>
+                    </td>
+                    <td>
+                        <%=order.SDT%>
+                    </td>
+                    <td>
+                        <form action="/order/payment/<%=order.MADON%>" method="post">
+                            <button type="submit">Thanh toán</button>
+                        </form>
+                    </td>
+                    <%})%>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
