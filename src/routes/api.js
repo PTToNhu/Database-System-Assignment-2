@@ -1,16 +1,43 @@
+const { NVarChar } = require('msnodesqlv8');
 var { connection } = require('../config/database')
-const sql = require("mssql");
 
-const CalculateInvoiceWithBranch = async function callCalculateInvoiceWithBranch(startDate, endDate, branchCode = null) {
-      // Kết nối tới SQL Server
-      const pool = await sql.connect(config);
-  
-      // Tạo request và gọi thủ tục
-      const result = await pool.request()
-        .input('StartDate', sql.DateTime, startDate)     
-        .input('EndDate', sql.DateTime, endDate)         
-        .input('BranchCode', sql.NVarChar(10), branchCode)
-        .execute('CalculateInvoiceWithBranch');   
-  }
+const getBranches = async () => {
+    const pool = await connection()
+    const result = await pool.request()
+        .query(`SELECT [MACHINHANH] FROM [QLNH].[dbo].[CHINHANH]`)
 
-module.exports={CalculateInvoiceWithBranch}
+    return result.recordset;
+}
+const calculateInvoiceWithBranch = async (startDate, endDate, branchCode = null) => {
+    const pool = await connection()
+    const result = await pool.request()
+        .input('StartDate', startDate)
+        .input('EndDate', endDate)
+        .input('BranchCode', branchCode)
+        .execute('calculateInvoiceWithBranch');
+
+    console.log(result.recordset);
+
+    return result.recordset;
+}
+
+const calculateBranchRevenueWithDetails = async (startDate, endDate, minRevenue = 0, minInvoices = 0) => {
+    const pool = await connection()
+    const result = await pool.request()
+        .input('StartDate', startDate)
+        .input('EndDate', endDate)
+        .input('MinRevenue', minRevenue)
+        .input('MinInvoices', minInvoices)
+        .execute('calculateBranchRevenueWithDetails');
+
+    console.log(result.recordset);
+
+    return result.recordset;
+}
+
+
+module.exports = {
+    calculateInvoiceWithBranch,
+    getBranches,
+    calculateBranchRevenueWithDetails
+}
