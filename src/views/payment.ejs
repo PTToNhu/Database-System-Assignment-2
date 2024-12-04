@@ -3,65 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Restaurant management</title>
     <link rel="stylesheet" href="/css/orderStyle.css">
 </head>
 
 <body>
+    <ul class="sidenav">
+        <li><a class="active" href="/order">Đơn hàng</a></li>
+    </ul>
     <div class="title">Thanh toán</div>
-    <form action="/order/payment/<%=madonhang%>" method="post" class>
+    <form action="/order/payment/<%=madonhang%>" method="post" class="payment-form">
         <div>
             <label for="MADONHANG">Mã đơn hàng</label>
-            <input type="text" id="MADONHANG" value="<%=madonhang%>" disabled>
+            <input type="text" name="MADONHANG" value="<%=madonhang%>" readonly>
         </div>
         <div>
             <label for="MAHOADON">Mã hóa đơn</label>
-            <input type="text" id="MAHOADON">
+            <input type="text" name="MAHOADON">
         </div>
         <div>
             <label for="THOIGIAN">Thời gian</label>
-            <input type="datetime-local" id="THOIGIAN">
+            <input type="datetime-local" name="THOIGIAN">
         </div>
         <div>
             <label for="MANV">Mã nhân viên</label>
-            <input type="text" id="MANV">
+            <input type="text" name="MANV">
         </div>
         <div>
             <label for="SDT">Số điện thoại khách hàng</label>
-            <input type="text" id="SDT">
-        </div>
-        <div>
-            <div class="title">Hóa đơn</div>
-            <table>
-                <tr>
-                    <th>Tổng hóa đơn</th>
-                    <td>nfsl</td>
-                </tr>
-                <tr>
-                    <th>Giảm giá trên món ăn</th>
-                    <td>nfsl</td>
-                </tr>
-                <tr>
-                    <th>Giảm giá trên hóa đơn</th>
-                    <td>nfsl</td>
-                </tr>
-                <tr>
-                    <th>Phí dịch vụ</th>
-                    <td>nfsl</td>
-                </tr>
-                <tr>
-                    <th>Phí phụ thu</th>
-                    <td>nfsl</td>
-                </tr>
-                <tr>
-                    <th>VAT</th>
-                    <td>nfsl</td>
-                </tr>
-                <tr>
-                    <th>Thanh toán</th>
-                    <td>nfsl</td>
-                </tr>
-            </table>
+            <input type="text" name="SDT">
         </div>
         <button type="submit">Lưu</button>
     </form>

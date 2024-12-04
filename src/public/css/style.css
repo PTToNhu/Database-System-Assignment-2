@@ -58,37 +58,37 @@ table th {
 }
 
 ul.sidenav {
-    list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 11%;
-    background-color: #ddd;
+    width: 7%;
+    background-color: hsl(217, 33%, 17%);
     position: fixed;
     height: 100%;
     overflow: auto;
-}
-
-ul.sidenav li a {
+  }
+  
+  ul.sidenav li a {
     display: block;
-    color: #000;
+    color: #ffffff;
     padding: 8px 16px;
     text-decoration: none;
-    font-size: 25px;
-
-}
-
-ul.sidenav li a.active {
-    background-color: #036989;
-    color: white;
-}
-
-ul.sidenav li a:hover:not(.active) {
-    background-color: #11395d;
-    color: white;
-}
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  ul.sidenav li a.active {
+    background-color: #334155;
+    color: #ffffff;
+  }
+  
+  ul.sidenav li a:hover:not(.active) {
+    background-color: #334155;
+    color: #ffffff;
+  }
 
 div.content {
-    margin-left: 11%;
+    margin-left: 9%;
     padding: 1px 16px;
     height: 1000px;
     font-size:20px

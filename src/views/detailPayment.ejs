@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant management</title>
+    <link rel="stylesheet" href="/css/orderStyle.css">
+</head>
+<body>
+    <div>
+        <ul class="sidenav">
+            <li><a class="active" href="/order">Đơn hàng</a></li>
+        </ul>
+        <div class="title">Chi tiết hóa đơn</div>
+        <div class="table-container detail-payment">
+            <table>
+                <tr>
+                    <th>Tổng hóa đơn</th>
+                    <td><%=invoiceDetail.TONGHOADON%></td>
+                </tr>
+                <tr>
+                    <th>Giảm giá trên món ăn</th>
+                    <td><%=invoiceDetail.GIAMMONAN%></td>
+                </tr>
+                <tr>
+                    <th>Giảm giá trên hóa đơn</th>
+                    <td><%=invoiceDetail.GIAMHOADON%></td>
+                </tr>
+                <tr>
+                    <th>Phí dịch vụ</th>
+                    <td><%=invoiceDetail.PHIDICHVU%></td>
+                </tr>
+                <tr>
+                    <th>Phí phụ thu</th>
+                    <td><%=invoiceDetail.PHIPHUTHU%></td>
+                </tr>
+                <tr>
+                    <th>VAT</th>
+                    <td><%=invoiceDetail.VAT%></td>
+                </tr>
+                <tr>
+                    <th>Thanh toán</th>
+                    <td><%=invoiceDetail.RES%></td>
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</body>
+</html>

@@ -1,3 +1,36 @@
+body {
+    margin: 0;
+    background-color: #ffffff;
+  }
+ul.sidenav {
+    margin: 0;
+    padding: 0;
+    width: 7%;
+    background-color: hsl(217, 33%, 17%);
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+  
+  ul.sidenav li a {
+    display: block;
+    color: #ffffff;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  ul.sidenav li a.active {
+    background-color: #334155;
+    color: #ffffff;
+  }
+  
+  ul.sidenav li a:hover:not(.active) {
+    background-color: #334155;
+    color: #ffffff;
+  }
 .title {
     padding-bottom: 30px;
     text-align: center;
@@ -125,4 +158,38 @@ tr:last-child td {
 
 tr td:last-child {
     border-right: none
+}
+.payment-form {
+    margin: 0 auto;
+    width: 20%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.payment-form div{
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.payment-form label {
+    flex: 0 0 120px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.payment-form input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.payment-form button {
+    width: fit-content;
+}
+.detail-payment {
+    width: 30%;
 }

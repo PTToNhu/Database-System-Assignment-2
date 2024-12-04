@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment</title>
+    <title>Restaurant management</title>
     <link rel="stylesheet" href="/css/orderStyle.css">
 </head>
 
 <body>
+    <ul class="sidenav">
+        <li><a class="active" href="/order">Đơn hàng</a></li>
+    </ul>
     <div class="title">
-        Thanh toán
+        Danh sách hóa đơn chưa được thanh toán
     </div>
     <form class="search-engine" action="/order" method="get">
         <input type="text" name="sdt" placeholder="Nhập số điện thoại khách hàng để tìm kiếm đơn đặt hàng">
@@ -44,7 +47,7 @@
                         <%=order.SDT%>
                     </td>
                     <td>
-                        <form action="/order/payment/<%=order.MADON%>" method="post">
+                        <form action="/order/payment/<%=order.MADON%>" method="get">
                             <button type="submit">Thanh toán</button>
                         </form>
                     </td>

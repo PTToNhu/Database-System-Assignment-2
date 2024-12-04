@@ -1,4 +1,4 @@
-const { NVarChar } = require('msnodesqlv8');
+const sql = require("mssql");
 var { connection } = require('../config/database')
 const getDishes = async () => {
     const pool = await connection();
@@ -36,6 +36,17 @@ const getInvoiceCost = async (invoiceid) => {
         .query(`SELECT * FROM dbo.CALCULATE_INVOICE1(@invoiceid)`)
     return data
 }
+const insertInvoiceWithDetails = async (MAHOADON, THOIGIAN, MADONHANG, MANV, SDT) => {
+    const pool = await connection();
+    const data = await pool.request()
+        .input('MAHOADON', sql.NVarChar(4), MAHOADON)
+        .input('THOIGIAN', sql.DateTime, THOIGIAN)
+        .input('MADONHANG', sql.NVarChar(3), MADONHANG)
+        .input('MANV', sql.NVarChar(3), MANV)
+        .input('SDT', sql.NVarChar(10), SDT)
+        .execute('InsertHoaDonWithDetails');
+    return data;
+};
 module.exports = {
-    getDishes, getOrders, getBranches, getOrdersByPhoneNumber, getInvoiceCost
+    getDishes, getOrders, getBranches, getOrdersByPhoneNumber, getInvoiceCost, insertInvoiceWithDetails
 }
