@@ -1,5 +1,6 @@
 const sql = require("mssql");
 var { connection } = require('../config/database')
+const { NVarChar } = require('msnodesqlv8');
 const getDishes = async () => {
     const pool = await connection();
     const data = await pool.request().query(`SELECT * FROM [QLNH].[dbo].[MONAN]`)
@@ -11,13 +12,6 @@ const getOrders = async () => {
         `select *
         from [dbo].[DONHANG]
         where MADON not in (select MADONHANG from hoadon)`)
-    return data
-}
-
-const getBranches = async () => {
-    const pool = await connection();
-    const data = await pool.request().query(
-        `select * from CHINHANH`)
     return data
 }
 const getOrdersByPhoneNumber = async (sdt) => {
@@ -47,6 +41,49 @@ const insertInvoiceWithDetails = async (MAHOADON, THOIGIAN, MADONHANG, MANV, SDT
         .execute('InsertHoaDonWithDetails');
     return data;
 };
+const getBranches = async () => {
+    const pool = await connection()
+    const result = await pool.request()
+        .query(`SELECT [MACHINHANH] FROM [QLNH].[dbo].[CHINHANH]`)
+
+    return result.recordset;
+}
+const calculateInvoiceWithBranch = async (startDate, endDate, branchCode = null) => {
+    const pool = await connection()
+    const result = await pool.request()
+        .input('StartDate', startDate)
+        .input('EndDate', endDate)
+        .input('BranchCode', branchCode)
+        .execute('calculateInvoiceWithBranch');
+
+    console.log(result.recordset);
+
+    return result.recordset;
+}
+
+const calculateBranchRevenueWithDetails = async (startDate, endDate, minRevenue = 0, minInvoices = 0) => {
+    const pool = await connection()
+    const result = await pool.request()
+        .input('StartDate', startDate)
+        .input('EndDate', endDate)
+        .input('MinRevenue', minRevenue)
+        .input('MinInvoices', minInvoices)
+        .execute('calculateBranchRevenueWithDetails');
+
+    console.log(result.recordset);
+
+    return result.recordset;
+}
+
+
 module.exports = {
-    getDishes, getOrders, getBranches, getOrdersByPhoneNumber, getInvoiceCost, insertInvoiceWithDetails
+    calculateInvoiceWithBranch,
+    getBranches,
+    calculateBranchRevenueWithDetails,
+    getDishes,
+    getOrders,
+    getBranches,
+    getOrdersByPhoneNumber,
+    getInvoiceCost,
+    insertInvoiceWithDetails
 }

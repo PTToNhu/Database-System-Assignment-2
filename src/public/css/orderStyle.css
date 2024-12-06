@@ -1,5 +1,6 @@
 body {
-    margin: 0;
+    font-family: Arial, sans-serif;
+    margin: 20px;
     background-color: #ffffff;
   }
 ul.sidenav {
@@ -32,6 +33,7 @@ ul.sidenav {
     color: #ffffff;
   }
 .title {
+    margin-top: 20px;
     padding-bottom: 30px;
     text-align: center;
     color: #1488DB;
@@ -70,7 +72,7 @@ button {
     border: none;
     font-size: 15px;
     border-radius: 17px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
     background-color:rgba(20, 136, 219, 0.70);
 }
 button:hover{
@@ -192,4 +194,27 @@ tr td:last-child {
 }
 .detail-payment {
     width: 30%;
+}
+nav {
+    background-color: #333;
+    overflow: hidden;
+}
+
+nav a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+nav a.active {
+    background-color: #222522;
+    color: white;
 }

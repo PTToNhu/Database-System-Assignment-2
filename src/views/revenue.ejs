@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Liên kết tới file CSS -->
+    <link rel="stylesheet" href="/css/revenue.css">
+</head>
+
+<body>
+
+    <!-- Thanh điều hướng -->
+    <nav>
+        <a href="/">Home</a>
+        <a href="/invoice">Invoice</a>
+        <a href="/revenue" class="active">Revenue</a>
+    </nav>
+
+    <!-- Biểu mẫu lọc -->
+    <form id="revenueFilterForm" class="revenue-filter-form" action="/revenue" method="POST">
+        <h1>Lọc Doanh Thu theo Doanh Thu Tối Thiểu và Số Hóa Đơn Tối Thiểu</h1>
+        <label for="startDate">Ngày bắt đầu:</label>
+        <input type="date" id="startDate" name="startDate" required>
+
+        <label for="endDate">Ngày kết thúc:</label>
+        <input type="date" id="endDate" name="endDate" required>
+
+        <label for="minRevenue">Doanh thu tối thiểu:</label>
+        <input type="number" id="minRevenue" name="minRevenue" value="0" min="0" required>
+
+        <label for="minInvoices">Số hóa đơn tối thiểu:</label>
+        <input type="number" id="minInvoices" name="minInvoices" value="0" min="0" required>
+
+        <button type="submit">Lọc</button>
+    </form>
+
+    <% if (lists && lists.length> 0) { %>
+        <h1>Bảng Doanh Thu</h1>
+        <table class="revenue-invoice-table">
+            <thead>
+                <tr>
+                    <th>Mã Chi Nhánh</th>
+                    <th>Tên Chi Nhánh</th>
+                    <th>Địa Chỉ</th>
+                    <th>Tổng Số Hóa Đơn</th>
+                    <th>Doanh Thu</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% lists.forEach(row=> { %>
+                    <tr>
+                        <td>
+                            <%= row.MACHINHANH %>
+                        </td>
+                        <td>
+                            <%= row.TENCHINHANH %>
+                        </td>
+                        <td>
+                            <%= row.DIACHI %>
+                        </td>
+                        <td>
+                            <%= row.TONGSOHOADON %>
+                        </td>
+                        <td>
+                            <%= Number.isInteger(row.DOANHTHU) ? row.DOANHTHU : row.DOANHTHU.toFixed(1) %>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+        <% } else { %>
+            <% } %>
+
+                <script>
+
+                    document.getElementById('revenueFilterForm').addEventListener('submit', async function (event) {
+                        // Lấy dữ liệu từ biểu mẫu
+                        const formData = new FormData(this);
+
+                        // Tạo một đối tượng để kiểm tra dữ liệu
+                        const formObject = {};
+                        formData.forEach((value, key) => {
+                            formObject[key] = value;
+                        });
+
+
+                        try {
+                            const response = await fetch(this.action, {
+                                method: this.method,
+                                body: formData,
+                            });
+
+                            if (response.ok) {
+                                const result = await response.text(); // Nhận phản hồi từ máy chủ
+                                document.body.innerHTML = result; // Cập nhật nội dung trang
+                            } else {
+                                console.error('Có lỗi xảy ra khi gửi yêu cầu:', response.statusText);
+                            }
+                        } catch (error) {
+                            console.error('Lỗi trong quá trình gửi yêu cầu:', error);
+                        }
+                    });
+                </script>
+</body>
+
+</html>

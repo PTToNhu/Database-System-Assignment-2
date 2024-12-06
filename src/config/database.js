@@ -10,7 +10,8 @@ const config = {
     trustServerCertificate: true,
     trustedConnection: false,
     enableArithAbort: true,
-    instancename: process.env.DB_INSTANCENAME
+    instancename: process.env.DB_INSTANCENAME,
+    encrypt: false,
   },
   port: 1433
 }

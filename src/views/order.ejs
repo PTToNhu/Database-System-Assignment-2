@@ -8,16 +8,19 @@
 </head>
 
 <body>
-    <ul class="sidenav">
-        <li><a class="active" href="/order">Đơn hàng</a></li>
-    </ul>
+    <nav>
+        <a href="/" class="active">Home</a>
+        <a href="/invoice">Invoice</a>
+        <a href="/revenue" >Revenue</a>
+        <a href="/order">Order</a>
+    </nav>
     <div class="title">
         Danh sách hóa đơn chưa được thanh toán
     </div>
-    <form class="search-engine" action="/order" method="get">
+    <!-- <form class="search-engine" action="/order" method="get">
         <input type="text" name="sdt" placeholder="Nhập số điện thoại khách hàng để tìm kiếm đơn đặt hàng">
         <button type="submit" id="sdt">Tìm kiếm</button>
-    </form>
+    </form> -->
 
     <div class="table-container">
         <table>
