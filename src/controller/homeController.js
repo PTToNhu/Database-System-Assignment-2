@@ -14,6 +14,7 @@ const {
   updateInvoiceAndOrderDetails,
 } = require("../routes/api");
 var { connection } = require("../config/database");
+const moment = require('moment-timezone');
 const orderPage = async (req, res) => {
   // const sdt = req.query.sdt
   // console.log(`sdt: ${sdt}`)
@@ -79,7 +80,7 @@ const getHomepage = async (req, res) => {
 const getInvoicepage = async (req, res) => {
   const branches = await getBranches();
   //const invoices = await calculateInvoiceWithBranch('2024-11-17 00:00:00', '2024-11-20 23:59:59', 'C01')
-  res.render("invoices.ejs", { invoices: [], branches: branches });
+    res.render("invoices.ejs", { invoices: [], branches: branches, moment: moment });
 };
 const postInvoicepage = async (req, res) => {
   const branches = await getBranches();
@@ -123,7 +124,7 @@ const postInvoicepage = async (req, res) => {
     }
 
     // Render trang với dữ liệu hoá đơn
-    res.render("invoices.ejs", { invoices: invoices, branches: branches });
+      res.render("invoices.ejs", { invoices: invoices, branches: branches, moment: moment });
   } catch (error) {
     console.error("Error in postInvoicepage:", error);
     res.render("invoices.ejs", {

@@ -22,6 +22,7 @@
     "ejs": "3.1.10",
     "express": "^4.21.2",
     "font-awesome": "4.7.0",
+    "moment-timezone": "^0.5.46",
     "msnodesqlv8": "^4.2.1",
     "mssql": "^11.0.1"
   },
