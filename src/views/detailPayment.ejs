@@ -6,31 +6,35 @@
     <link rel="stylesheet" href="/css/orderStyle.css">
 </head>
 <body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/invoice">Invoice</a>
+        <a href="/revenue" >Revenue</a>
+        <a href="/order" class="active">Order</a>
+        <a href="/customer">Customer</a>
+    </nav>
     <div>
-        <ul class="sidenav">
-            <li><a class="active" href="/order">Đơn hàng</a></li>
-        </ul>
-        <div class="title">Chi tiết hóa đơn</div>
+        <div class="title">Detail of invoice</div>
         <div class="table-container detail-payment">
             <table>
                 <tr>
-                    <th>Tổng hóa đơn</th>
+                    <th>Total Order</th>
                     <td><%=invoiceDetail.TONGHOADON%></td>
                 </tr>
                 <tr>
-                    <th>Giảm giá trên món ăn</th>
+                    <th>Discount on Food</th>
                     <td><%=invoiceDetail.GIAMMONAN%></td>
                 </tr>
                 <tr>
-                    <th>Giảm giá trên hóa đơn</th>
+                    <th>Discount on Invoice</th>
                     <td><%=invoiceDetail.GIAMHOADON%></td>
                 </tr>
                 <tr>
-                    <th>Phí dịch vụ</th>
+                    <th>Service Fee</th>
                     <td><%=invoiceDetail.PHIDICHVU%></td>
                 </tr>
                 <tr>
-                    <th>Phí phụ thu</th>
+                    <th>Surcharge</th>
                     <td><%=invoiceDetail.PHIPHUTHU%></td>
                 </tr>
                 <tr>
@@ -38,7 +42,7 @@
                     <td><%=invoiceDetail.VAT%></td>
                 </tr>
                 <tr>
-                    <th>Thanh toán</th>
+                    <th>Payment</th>
                     <td><%=invoiceDetail.RES%></td>
                 </tr>
             </table>

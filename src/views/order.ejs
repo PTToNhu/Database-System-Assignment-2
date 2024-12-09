@@ -9,31 +9,29 @@
 
 <body>
     <nav>
-        <a href="/" class="active">Home</a>
+        <a href="/">Home</a>
         <a href="/invoice">Invoice</a>
-        <a href="/revenue" >Revenue</a>
-        <a href="/order">Order</a>
+        <a href="/revenue">Revenue</a>
+        <a href="/order" class="active">Order</a>
+        <a href="/customer">Customer</a>
     </nav>
     <div class="title">
-        Danh sách hóa đơn chưa được thanh toán
+        List of unpaid orders
     </div>
-    <!-- <form class="search-engine" action="/order" method="get">
-        <input type="text" name="sdt" placeholder="Nhập số điện thoại khách hàng để tìm kiếm đơn đặt hàng">
-        <button type="submit" id="sdt">Tìm kiếm</button>
-    </form> -->
 
     <div class="table-container">
         <table>
             <tr>
-                <th>Mã đơn</th>
-                <th>Mã chi nhánh</th>
-                <th>Thời gian đặt</th>
-                <th>Thời gian dùng</th>
-                <th>Số điện thoại khách hàng</th>
-                <th>Thanh toán</th>
+                <th>Order ID</th>
+                <th>Branch ID</th>
+                <th>Reservation Time</th>
+                <th>Dining Time</th>
+                <th>Customer's Phone Number</th>
+                <th>Option</th>
             </tr>
-            <tr>
-                <%orders.forEach(order=>{%>
+
+            <%orders.forEach(order=>{%>
+                <tr>
                     <td>
                         <%=order.MADON%>
                     </td>
@@ -51,11 +49,11 @@
                     </td>
                     <td>
                         <form action="/order/payment/<%=order.MADON%>" method="get">
-                            <button type="submit">Thanh toán</button>
+                            <button type="submit">Pay</button>
                         </form>
                     </td>
-                    <%})%>
-            </tr>
+                </tr>
+            <%})%>
         </table>
     </div>
 </body>

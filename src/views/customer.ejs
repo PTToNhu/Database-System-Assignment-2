@@ -1,0 +1,116 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/customer.css">
+</head>
+
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/invoice">Invoice</a>
+        <a href="/revenue">Revenue</a>
+        <a href="/order">Order</a>
+        <a href="/customer" class="active">Customer</a>
+    </nav>
+    <div class="title">Customer Information</div>
+    <div class="content">
+
+        <button onclick="openForm('new-customer')" style="margin-left: 25px;">
+            </i><i class="fa fa-plus"></i> New customer
+        </button>
+        <div class="overlay"></div>
+
+        <div class="form-popup" id="new-customer">
+            <form action="/customer" class="form-container" method="post">
+                <h2 class="title">Add new customer</h2>
+                <div class="input-group">
+                    <label><b>Name</b></label><br>
+                    <input type="text" name="Name" maxlength="255" required>
+                </div>
+                <div class="input-group">
+                    <label><b>Phone Number</b></label><br>
+                    <input type="text" name="PhoneNumber" maxlength="10" required>
+                </div>
+                <div class="button-container" style="display: flex; justify-content: center;">
+                    <button type="button" class="close" onclick="closeForm()">Close</button>
+                    <button type="submit" class="save">Save</button>
+                </div>
+            </form>
+        </div>
+        <div class="table-container" style="margin-left: 20px">
+            <table id="customer-table" class="display">
+                <thead>
+                    <tr>
+                        <th class="phonenumber">Phone Number</th>
+                        <th class="name">Name</th>
+                        <th class="cumulativepoint">Cumulative Point</th>
+                        <th class="tier">Tier</th>
+                        <th class="option">Option</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% customers.forEach(customer=>{%>
+                        <tr>
+                            <td>
+                                <%= customer.SDT%>
+                            </td>
+                            <td>
+                                <%=customer.TEN%>
+                            </td>
+                            <td>
+                                <%= customer.DIEMTICHLUY %>
+                            </td>
+                            <td>
+                                <%= customer.HANG %>
+                            </td>
+                            <td>
+                                <div style="display: flex; justify-content: center">
+                                    <div>
+                                        <button
+                                            onclick="openForm('update-customer-<%= customer.SDT %>')">Update</button>
+                                    </div>
+                                    <div class="form-popup update-customer" id="update-customer-<%= customer.SDT %>">
+                                        <form action="/customer/update/<%= customer.SDT %>" class="form-container"
+                                            method="post">
+                                            <h2 class="title">Update customer</h2>
+                                            <div class="input-group">
+                                                <label><b>Phone Number</b></label><br>
+                                                <input type="text" name="SDT" value="<%= customer.SDT %>" disabled>
+                                            </div>
+                                            <div class="input-group">
+                                                <label><b>Name</b></label><br>
+                                                <input type="text" name="TEN" maxlength="255" required>
+                                            </div>
+                                            <div style="display: flex; justify-content: center; margin: 20px 0;">
+                                                <button type="button" class="close" onclick="closeForm()">Close</button>
+                                                <button type="submit" class="save">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <form action="/customer/delete/<%= customer.SDT %>" method="post">
+                                        <button class="close">Delete</button>
+                                    </form>
+                            </td>
+                        </tr>
+                        <%})%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        function openForm(formId) {
+            document.getElementById(formId).style.display = "block";
+            document.querySelector(".overlay").style.display = "block";
+        }
+
+        function closeForm() {
+            document.querySelectorAll('.form-popup').forEach(form => form.style.display = "none");
+            document.querySelector(".overlay").style.display = "none";
+        }
+    </script>
+</body>
+
+</html>

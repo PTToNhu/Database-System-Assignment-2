@@ -8,32 +8,36 @@
 </head>
 
 <body>
-    <ul class="sidenav">
-        <li><a class="active" href="/order">Đơn hàng</a></li>
-    </ul>
-    <div class="title">Thanh toán</div>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/invoice">Invoice</a>
+        <a href="/revenue" >Revenue</a>
+        <a href="/order"  class="active">Order</a>
+        <a href="/customer">Customer</a>
+    </nav>
+    <div class="title">Payment</div>
     <form action="/order/payment/<%=madonhang%>" method="post" class="payment-form">
         <div>
-            <label for="MADONHANG">Mã đơn hàng</label>
+            <label for="MADONHANG">Order ID</label>
             <input type="text" name="MADONHANG" value="<%=madonhang%>" readonly>
         </div>
         <div>
-            <label for="MAHOADON">Mã hóa đơn</label>
-            <input type="text" name="MAHOADON">
+            <label for="MAHOADON">Invoice ID</label>
+            <input type="text" name="MAHOADON" required>
         </div>
         <div>
-            <label for="THOIGIAN">Thời gian</label>
-            <input type="datetime-local" name="THOIGIAN">
+            <label for="THOIGIAN">Time</label>
+            <input type="datetime-local" name="THOIGIAN" required>
         </div>
         <div>
-            <label for="MANV">Mã nhân viên</label>
-            <input type="text" name="MANV">
+            <label for="MANV">Staff ID</label>
+            <input type="text" name="MANV" required>
         </div>
         <div>
-            <label for="SDT">Số điện thoại khách hàng</label>
-            <input type="text" name="SDT">
+            <label for="SDT">Customer's Phone Number</label>
+            <input type="text" name="SDT" required>
         </div>
-        <button type="submit">Lưu</button>
+        <button type="submit">Save</button>
     </form>
 </body>
 

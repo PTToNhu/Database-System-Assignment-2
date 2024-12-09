@@ -5,6 +5,10 @@ const {
   getInvoiceCost,
   calculateInvoiceWithBranch,
   calculateBranchRevenueWithDetails,
+  getCustomersFDB,
+  postCustomerFDB,
+  updateCustomerFDB,
+  deleteCustomerFDB,
 } = require("../routes/api");
 const orderPage = async (req, res) => {
   // const sdt = req.query.sdt
@@ -38,18 +42,18 @@ const getPaymentPage = async (req, res) => {
 };
 const postPaymentPage = async (req, res) => {
   try {
-    // console.log(`params ${req.params.orderid}`)
-    // console.log(req.body)
+    console.log(`params ${req.params.orderid}`)
+    console.log(req.body)
     const MADONHANG = req.params.orderid;
     const { MAHOADON, THOIGIAN, MANV, SDT } = req.body;
     let date = new Date(THOIGIAN);
     date.setHours(date.getHours() + 7);
     console.log(`thoi gian ${date}`);
 
-    await insertInvoiceWithDetails(MAHOADON, date, MADONHANG, MANV, SDT);
-    const data = await getInvoiceCost(MAHOADON);
-    console.log(data.reFcordset[0]);
-    res.render("detailPayment.ejs", { invoiceDetail: data.recordset[0] });
+    const invoice = await insertInvoiceWithDetails(MAHOADON, date, MADONHANG, MANV, SDT);
+    const data = await getInvoiceCost(MADONHANG, date,SDT);
+    console.log(data.recordset[0]);
+    res.render("detailPayment.ejs", { invoiceDetail: data.recordset[0]});
   } catch {
     console.error("Đã xảy ra lỗi khi xử lý thanh toán:", error);
     res
@@ -140,6 +144,33 @@ const postRevenuepage = async (req, res) => {
     res.render("revenue.ejs", { lists: [], error: "Error fetching invoices." });
   }
 };
+
+const getCustomers=async (req, res)=>{
+  const customers=await getCustomersFDB();
+  // console.log(customers.recordset)
+  res.render('customer.ejs', {customers:customers.recordset})
+}
+const postCustomer=async(req, res)=>{
+  console.log(req.body)
+  const {Name, PhoneNumber}=req.body;
+  const customer=await postCustomerFDB(Name, PhoneNumber)
+  console.log(customer)
+  res.redirect('/customer')
+}
+const updateCustomer=async(req, res)=>{
+  console.log(req.params)
+  console.log(req.body)
+  const customer=await updateCustomerFDB(req.body.TEN, req.params.SDT)
+  console.log(customer)
+  res.redirect('/customer')
+}
+const deleteCustomer=async(req, res)=>{
+  console.log(req.params)
+  const customer=await deleteCustomerFDB(req.params.SDT)
+  console.log(customer)
+  res.redirect('/customer')
+}
+
 module.exports = {
   orderPage,
   getPaymentPage,
@@ -149,4 +180,8 @@ module.exports = {
   postInvoicepage,
   getRevenuepage,
   postRevenuepage,
+  getCustomers,
+  postCustomer,
+  updateCustomer,
+  deleteCustomer
 };

@@ -36,7 +36,7 @@ ul.sidenav {
     margin-top: 20px;
     padding-bottom: 30px;
     text-align: center;
-    color: #1488DB;
+    color: #404840;
     font-size: 40px;
     font-style: normal;
     font-weight: 700;
@@ -66,17 +66,15 @@ ul.sidenav {
     border-radius: 0;
 }
 button {
-    cursor: pointer;
-    color: #000;
-    padding: 6px 20px;
+    background-color: #404840;
+    color: white;
+    padding: 10px 15px;
     border: none;
-    font-size: 15px;
-    border-radius: 17px;
-    /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
-    background-color:rgba(20, 136, 219, 0.70);
+    border-radius: 4px;
+    cursor: pointer;
 }
 button:hover{
-    background-color: #0056b3;
+    background-color: #1e201e;
 }
 .table-container {
     margin-left: auto;
