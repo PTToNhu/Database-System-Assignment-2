@@ -1,11 +1,27 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+    background-color: #f4f7f6;
+    /* Màu nền nhẹ nhàng */
 }
 
-h1 {
+h1,
+h2 {
     text-align: center;
     color: #333;
+    margin-bottom: 32px;
+}
+
+.h1-title {
+    margin-top: 72px;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 72px;
+}
+
+.h2-title {
+    margin-top: 72px;
+    margin-bottom: 72px;
 }
 
 nav {
@@ -20,6 +36,7 @@ nav a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    transition: background-color 0.3s;
 }
 
 nav a:hover {
@@ -36,14 +53,15 @@ nav a.active {
     border-collapse: collapse;
     width: 100%;
     margin-top: 20px;
-    margin-bottom: 72px;
+    margin-bottom: 40px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .revenue-invoice-table th,
 .revenue-invoice-table td {
     border: 1px solid #ddd;
     padding: 12px;
-    text-align: left;
+    text-align: center;
 }
 
 .revenue-invoice-table th {
@@ -56,7 +74,7 @@ nav a.active {
 }
 
 .revenue-invoice-table tr:hover {
-    background-color: #f1f1f1;
+    background-color: #e0f7fa;
 }
 
 .revenue-invoice-table td {
@@ -75,41 +93,71 @@ nav a.active {
     padding: 36px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.revenue-filter-form h2 {
-    margin-bottom: 15px;
-    font-size: 18px;
-    color: #333;
+.revenue-filter-form h1 {
+    font-size: 24px;
+    color: #404840;
+    margin-bottom: 20px;
 }
 
 .revenue-filter-form label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #404840;
 }
 
 .revenue-filter-form input[type="date"],
 .revenue-filter-form input[type="number"],
 .revenue-filter-form select {
-
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     margin-bottom: 16px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.revenue-filter-form input[type="radio"] {
+    margin-right: 8px;
+}
+
+.revenue-filter-form .radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    /* Tạo khoảng cách giữa các radio buttons */
+    align-items: center;
+}
+
+.revenue-filter-form input[type="radio"]:checked+label {
+    font-weight: bold;
+    color: #566e56;
+    /* Tô màu xanh cho label khi được chọn */
 }
 
 .revenue-filter-form button {
-    background-color: #464d46;
+    background-color: #566e56;
     color: white;
-    padding: 10px 15px;
+    padding: 12px 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    /* Full-width cho button */
+    margin-top: 16px;
 }
 
 .revenue-filter-form button:hover {
-    background-color: #1f221f;
+    background-color: #445644;
+    /* Tô màu đậm hơn khi hover */
+}
+
+.revenue-filter-form button:focus {
+    outline: none;
 }

@@ -1,11 +1,18 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+    background-color: #f4f7f6;
 }
 
-h1 {
+h1,
+h2 {
     text-align: center;
     color: #333;
+    margin-bottom: 72px;
+}
+
+.h1-title {
+    margin-top: 72px;
 }
 
 nav {
@@ -20,6 +27,7 @@ nav a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    transition: background-color 0.3s;
 }
 
 nav a:hover {
@@ -32,18 +40,23 @@ nav a.active {
     color: white;
 }
 
+td:hover {
+    cursor: pointer;
+}
+
 .invoice-table {
     border-collapse: collapse;
     width: 100%;
     margin-top: 20px;
     margin-bottom: 72px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .invoice-table th,
 .invoice-table td {
     border: 1px solid #ddd;
     padding: 12px;
-    text-align: left;
+    text-align: center;
 }
 
 .invoice-table th {
@@ -70,50 +83,241 @@ nav a.active {
     }
 }
 
-
 .filter-form {
     margin-bottom: 20px;
     padding: 36px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.filter-form h2 {
-    margin-bottom: 15px;
-    font-size: 18px;
-    color: #333;
+.filter-form h1 {
+    font-size: 24px;
+    color: #404840;
+    margin-bottom: 20px;
 }
 
 .filter-form label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #404840;
 }
 
 .filter-form input[type="date"],
-.filter-form input[type="number"],
 .filter-form select {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     margin-bottom: 16px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.filter-form input[type="checkbox"] {
+    margin-right: 10px;
 }
 
 .filter-form button {
-    background-color: #404840;
+    background-color: #566e56;
+    /* Màu xanh lá cây sáng */
     color: white;
-    padding: 10px 15px;
+    padding: 12px 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    /* Đặt chiều rộng của nút là 100% */
+    margin-top: 16px;
 }
 
 .filter-form button:hover {
-    background-color: #1e201e;
+    background-color: #566e56;
+    /* Màu xanh lá cây đậm hơn khi hover */
+}
+
+.filter-form button:focus {
+    outline: none;
 }
 
 .h1-title {
+    margin-top: 72px;
+    font-size: 28px;
+    color: #333;
+}
+
+.filter-form .checkbox-group button:hover {
+    background-color: #45a049;
+}
+
+.filter-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #404840;
+}
+
+.filter-form .radio-group {
+    display: flex;
+    flex-direction: row;
+    /* Items in a row */
+    gap: 24px;
+    /* Adequate space between the radio buttons */
+}
+
+.filter-form input[type="radio"]:checked+label {
+    font-weight: bold;
+}
+
+.filter-form .radio-group input[type="radio"]:checked {
+    background-color: #4caf50;
+}
+
+/* Style for the Popup */
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Popup content */
+.popup-content {
+    position: relative;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 450px;
+    height: 280px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Distribute space between elements */
+}
+
+/* Title inside the popup */
+.popup-content h2 {
+    margin-bottom: 20px;
+    color: black;
+    padding-top: 12px;
+}
+
+/* Button container to align the buttons */
+.popup-content .button-container {
+    display: flex;
+    justify-content: space-between;
+    /* Align buttons in one row with space between them */
+    gap: 20px;
+    /* Space between buttons */
+    padding-bottom: 20px;
+    /* Space from the bottom of the popup */
+}
+
+/* Button styles */
+.popup-content button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #566e56;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    width: 80%;
+    /* Each button takes up 30% of the width */
+}
+
+/* Close button styling */
+.popup-content .close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 40px;
+    cursor: pointer;
+    margin-bottom: 16px;
+}
+
+.popup-content .close:hover {
+    color: rgb(92, 89, 89);
+}
+
+/* Label Style */
+#customerUpdatePopup .popup-content label,
+#employeeUpdatePopup .popup-content label {
+    display: block;
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+/* Input Field Style */
+#customerUpdatePopup .popup-content input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+/* Submit Button Style */
+#customerUpdatePopup #submitCustomerUpdate {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1em;
+    color: #fff;
+    background-color: #566e56;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#customerUpdatePopup #submitCustomerUpdate:hover,
+#updateCustomerButton:hover,
+#updateEmployeeButton:hover,
+#editButton:hover,
+#deleteButton:hover {
+    background-color: #869286;
+}
+
+/* Input Field Style */
+#employeeUpdatePopup .popup-content input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+/* Submit Button Style */
+#employeeUpdatePopup #submitEmployeeUpdate {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1em;
+    color: #fff;
+    background-color: #566e56;
+    /* Green background for Employee Form */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.h2-title {
     margin-top: 72px;
 }
