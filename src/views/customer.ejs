@@ -99,7 +99,13 @@
                 </tbody>
             </table>
         </div>
+        
     </div>
+    <% if (message) { %>
+        <script>
+          alert('<%= message %>');
+        </script>
+      <% } %>
     <script>
         function openForm(formId) {
             document.getElementById(formId).style.display = "block";

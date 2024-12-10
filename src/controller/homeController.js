@@ -14,6 +14,7 @@ const {
   updateInvoiceAndOrderDetails,
 } = require("../routes/api");
 var { connection } = require("../config/database");
+const moment = require("moment-timezone");
 const orderPage = async (req, res) => {
   // const sdt = req.query.sdt
   // console.log(`sdt: ${sdt}`)
@@ -35,7 +36,7 @@ const orderPage = async (req, res) => {
   // }
   try {
     const orders = await getOrders();
-    console.log(orders.recordset)
+    console.log(orders.recordset);
     res.render("order.ejs", { orders: orders.recordset });
   } catch {
     console.error("Đã xảy ra lỗi khi lấy danh sách đơn hàng:", error);
@@ -80,7 +81,11 @@ const getHomepage = async (req, res) => {
 const getInvoicepage = async (req, res) => {
   const branches = await getBranches();
   //const invoices = await calculateInvoiceWithBranch('2024-11-17 00:00:00', '2024-11-20 23:59:59', 'C01')
-  res.render("invoices.ejs", { invoices: [], branches: branches });
+  res.render("invoices.ejs", {
+    invoices: [],
+    branches: branches,
+    moment: moment,
+  });
 };
 const postInvoicepage = async (req, res) => {
   const branches = await getBranches();
@@ -124,7 +129,11 @@ const postInvoicepage = async (req, res) => {
     }
 
     // Render trang với dữ liệu hoá đơn
-    res.render("invoices.ejs", { invoices: invoices, branches: branches });
+    res.render("invoices.ejs", {
+      invoices: invoices,
+      branches: branches,
+      moment: moment,
+    });
   } catch (error) {
     console.error("Error in postInvoicepage:", error);
     res.render("invoices.ejs", {
@@ -255,27 +264,40 @@ module.exports = {};
 const getCustomers = async (req, res) => {
   const customers = await getCustomersFDB();
   // console.log(customers.recordset)
-  res.render("customer.ejs", { customers: customers.recordset });
+  const message = req.query.message;
+  res.render("customer.ejs", {
+    customers: customers.recordset,
+    message: message,
+  });
 };
 const postCustomer = async (req, res) => {
   console.log(req.body);
   const { Name, PhoneNumber } = req.body;
   const customer = await postCustomerFDB(Name, PhoneNumber);
+  const message = customer.success
+    ? `Success: ${customer.message}`
+    : `Error: ${customer.message}`;
   console.log(customer);
-  res.redirect("/customer");
+  res.redirect(`/customer?message=${encodeURIComponent(message)}`);
 };
 const updateCustomer = async (req, res) => {
   console.log(req.params);
   console.log(req.body);
   const customer = await updateCustomerFDB(req.body.TEN, req.params.SDT);
+  const message = customer.success
+    ? `Success: ${customer.message}`
+    : `Error: ${customer.message}`;
   console.log(customer);
-  res.redirect("/customer");
+  res.redirect(`/customer?message=${encodeURIComponent(message)}`);
 };
 const deleteCustomer = async (req, res) => {
   console.log(req.params);
   const customer = await deleteCustomerFDB(req.params.SDT);
+  const message = customer.success
+    ? `Success: ${customer.message}`
+    : `Error: ${customer.message}`;
   console.log(customer);
-  res.redirect("/customer");
+  res.redirect(`/customer?message=${encodeURIComponent(message)}`);
 };
 
 module.exports = {

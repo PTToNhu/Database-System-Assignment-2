@@ -12,7 +12,7 @@
     <nav>
         <a href="/">Home</a>
         <a href="/invoice" class="active">Invoice</a>
-        <a href="/revenue" >Revenue</a>
+        <a href="/revenue">Revenue</a>
         <a href="/order">Order</a>
         <a href="/customer">Customer</a>
     </nav>
@@ -54,7 +54,7 @@
     <!-- Action Popup -->
     <div id="actionPopup" class="popup">
         <div class="popup-content">
-            <h2>What action do you want to perform?</h2>
+            <h2 id="actionPopupTitle">What action do you want to perform?</h2>
             <div class="button-container">
                 <button id="editButton">Edit</button>
                 <button id="deleteButton">Delete</button>
@@ -66,7 +66,7 @@
     <!-- Update Type Popup -->
     <div id="updateTypePopup" class="popup">
         <div class="popup-content">
-            <h2>What do you want to update?</h2>
+            <h2 id="updateTypePopupTitle">What do you want to update?</h2>
             <div class="button-container">
                 <button id="updateCustomerButton">Customer Info</button>
                 <button id="updateEmployeeButton">Employee Info</button>
@@ -78,7 +78,7 @@
     <!-- Customer Update Form -->
     <div id="customerUpdatePopup" class="popup">
         <div class="popup-content">
-            <h2>Update Customer Info</h2>
+            <h2 id="customerUpdatePopupTitle">Update Customer Info</h2>
             <label for="customerPhone">Customer Phone:</label>
             <input type="text" id="customerPhone" name="customerPhone" required>
             <label for="customerName">Customer Name:</label>
@@ -91,7 +91,7 @@
     <!-- Employee Update Form -->
     <div id="employeeUpdatePopup" class="popup">
         <div class="popup-content">
-            <h2>Update Employee Info</h2>
+            <h2 id="employeeUpdatePopupTitle">Update Employee Info</h2>
             <label for="employeeID">Employee ID:</label>
             <input type="text" id="employeeID" name="employeeID" required>
             <label for="employeeName">Employee Name:</label>
@@ -131,8 +131,9 @@
                                     <%= invoice.MAHOADON %>
                                 </td>
                                 <td>
-                                    <%= new Date(invoice.THOIGIAN).toLocaleDateString('en-US') %>
+                                    <%= invoice.THOIGIAN %>
                                 </td>
+
                                 <td>
                                     <%= invoice.SDTKHACHHANG %>
                                 </td>
@@ -207,13 +208,16 @@
                                 const customerPhoneInput = document.getElementById('customerPhone');
                                 const customerNameInput = document.getElementById('customerName');
 
+                                const actionPopupTitle = document.querySelector('#actionPopup h2');
                                 let selectedRow = null;
 
                                 const tableRows = document.querySelectorAll('.invoice-table tbody tr');
                                 tableRows.forEach(row => {
                                     row.addEventListener('click', () => {
                                         selectedRow = row;
-                                        actionPopup.style.display = 'flex';
+                                        const invoiceId = selectedRow.querySelector('td:nth-child(1)').textContent.trim(); // Lấy mã hóa đơn từ ô đầu tiên
+                                        actionPopupTitle.textContent = `What action do you want to perform for Invoice ID: ${invoiceId}?`; // Thay đổi nội dung tiêu đề
+                                        actionPopup.style.display = 'flex'; // Hiển thị popup
                                     });
                                 });
 
@@ -354,14 +358,19 @@
 
                                 editButton.addEventListener('click', () => {
                                     if (selectedRow) {
-                                        actionPopup.style.display = 'none';
-                                        updateTypePopup.style.display = 'flex';
+                                        const invoiceId = selectedRow.querySelector('td:nth-child(1)').textContent.trim();
+                                        document.getElementById('updateTypePopupTitle').textContent = `What do you want to update for Invoice ID: ${invoiceId}?`;
+                                        actionPopup.style.display = 'none'; // Đóng popup Action
+                                        updateTypePopup.style.display = 'flex'; // Hiển thị popup Update Type
                                     }
                                 });
+
 
                                 document.getElementById('updateCustomerButton').addEventListener('click', () => {
                                     if (selectedRow) {
                                         updateTypePopup.style.display = 'none';
+                                        const invoiceId = selectedRow.querySelector('td:nth-child(1)').textContent.trim();
+                                        document.getElementById('customerUpdatePopupTitle').textContent = `Update Customer Info for ${invoiceId}`;
                                         customerUpdatePopup.style.display = 'flex';
                                     }
                                 });
@@ -412,6 +421,8 @@
                                 document.getElementById('updateEmployeeButton').addEventListener('click', () => {
                                     if (selectedRow) {
                                         updateTypePopup.style.display = 'none';
+                                        const invoiceId = selectedRow.querySelector('td:nth-child(1)').textContent.trim();
+                                        document.getElementById('employeeUpdatePopupTitle').textContent = `Update Employee Info for ${invoiceId}`;
                                         employeeUpdatePopup.style.display = 'flex';
                                     }
                                 });
