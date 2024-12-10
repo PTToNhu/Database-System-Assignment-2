@@ -39,10 +39,10 @@
                         <%=order.MACHINHANH%>
                     </td>
                     <td>
-                        <%=order.THOIGIANDAT%>
+                        <%= new Date(order.THOIGIANDAT).toISOString()%>
                     </td>
                     <td>
-                        <%=order.THOIGIANDUNG%>
+                        <%=new Date(order.THOIGIANDUNG).toISOString()%>
                     </td>
                     <td>
                         <%=order.SDT%>

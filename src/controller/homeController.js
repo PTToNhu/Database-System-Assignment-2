@@ -35,6 +35,7 @@ const orderPage = async (req, res) => {
   // }
   try {
     const orders = await getOrders();
+    console.log(orders.recordset)
     res.render("order.ejs", { orders: orders.recordset });
   } catch {
     console.error("Đã xảy ra lỗi khi lấy danh sách đơn hàng:", error);
